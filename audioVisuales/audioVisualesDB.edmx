@@ -1,0 +1,591 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AudiovisualesDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Empleados">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Cedula" Type="char" MaxLength="11" />
+          <Property Name="Tanda_Labor" Type="varchar" MaxLength="10" />
+          <Property Name="Fecha_Ingreso" Type="date" />
+          <Property Name="Estado" Type="char" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Equipos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NSerial" Type="char" MaxLength="11" Nullable="false" />
+          <Property Name="ServiceTag" Type="char" MaxLength="3" />
+          <Property Name="TipoEquipoID" Type="int" />
+          <Property Name="MarcaID" Type="int" />
+          <Property Name="ModeloID" Type="int" />
+          <Property Name="TCID" Type="int" />
+          <Property Name="Estado" Type="char" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Marcas">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Estado" Type="char" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Modelos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDMARCA" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+          <Property Name="Estado" Type="char" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Renta_Dev">
+          <Key>
+            <PropertyRef Name="NoPrestamo" />
+          </Key>
+          <Property Name="NoPrestamo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Empleado" Type="int" Nullable="false" />
+          <Property Name="Equipo" Type="int" Nullable="false" />
+          <Property Name="Usuario" Type="int" Nullable="false" />
+          <Property Name="FechaPrestamo" Type="date" />
+          <Property Name="FechaDevolucion" Type="date" />
+          <Property Name="Comentario" Type="varchar" MaxLength="100" />
+          <Property Name="Estado" Type="char" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Tecnologia_Conexion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Estado" Type="char" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Tipos_Equipos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Estado" Type="char" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Cedula" Type="char" MaxLength="11" />
+          <Property Name="NumCarnet" Type="int" />
+          <Property Name="TipoUsuario" Type="varchar" MaxLength="20" />
+          <Property Name="TipoPersona" Type="varchar" MaxLength="10" />
+          <Property Name="Estado" Type="char" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK__Equipos__MarcaID__412EB0B6">
+          <End Role="Marcas" Type="Self.Marcas" Multiplicity="0..1" />
+          <End Role="Equipos" Type="Self.Equipos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marcas">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Equipos">
+              <PropertyRef Name="MarcaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Equipos__ModeloI__4222D4EF">
+          <End Role="Modelos" Type="Self.Modelos" Multiplicity="0..1" />
+          <End Role="Equipos" Type="Self.Equipos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modelos">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Equipos">
+              <PropertyRef Name="ModeloID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Equipos__TCID__4316F928">
+          <End Role="Tecnologia_Conexion" Type="Self.Tecnologia_Conexion" Multiplicity="0..1" />
+          <End Role="Equipos" Type="Self.Equipos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tecnologia_Conexion">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Equipos">
+              <PropertyRef Name="TCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Equipos__TipoEqu__403A8C7D">
+          <End Role="Tipos_Equipos" Type="Self.Tipos_Equipos" Multiplicity="0..1" />
+          <End Role="Equipos" Type="Self.Equipos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipos_Equipos">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Equipos">
+              <PropertyRef Name="TipoEquipoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Modelos__IDMARCA__3B75D760">
+          <End Role="Marcas" Type="Self.Marcas" Multiplicity="1" />
+          <End Role="Modelos" Type="Self.Modelos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marcas">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Modelos">
+              <PropertyRef Name="IDMARCA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Renta_Dev__Emple__49C3F6B7">
+          <End Role="Empleados" Type="Self.Empleados" Multiplicity="1" />
+          <End Role="Renta_Dev" Type="Self.Renta_Dev" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleados">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Renta_Dev">
+              <PropertyRef Name="Empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Renta_Dev__Equip__4AB81AF0">
+          <End Role="Equipos" Type="Self.Equipos" Multiplicity="1" />
+          <End Role="Renta_Dev" Type="Self.Renta_Dev" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipos">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Renta_Dev">
+              <PropertyRef Name="Equipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Renta_Dev__Usuar__4BAC3F29">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Renta_Dev" Type="Self.Renta_Dev" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Renta_Dev">
+              <PropertyRef Name="Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AudiovisualesDBModelStoreContainer">
+          <EntitySet Name="Empleados" EntityType="Self.Empleados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equipos" EntityType="Self.Equipos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Marcas" EntityType="Self.Marcas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Modelos" EntityType="Self.Modelos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Renta_Dev" EntityType="Self.Renta_Dev" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tecnologia_Conexion" EntityType="Self.Tecnologia_Conexion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tipos_Equipos" EntityType="Self.Tipos_Equipos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Equipos__MarcaID__412EB0B6" Association="Self.FK__Equipos__MarcaID__412EB0B6">
+            <End Role="Marcas" EntitySet="Marcas" />
+            <End Role="Equipos" EntitySet="Equipos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Equipos__ModeloI__4222D4EF" Association="Self.FK__Equipos__ModeloI__4222D4EF">
+            <End Role="Modelos" EntitySet="Modelos" />
+            <End Role="Equipos" EntitySet="Equipos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Equipos__TCID__4316F928" Association="Self.FK__Equipos__TCID__4316F928">
+            <End Role="Tecnologia_Conexion" EntitySet="Tecnologia_Conexion" />
+            <End Role="Equipos" EntitySet="Equipos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Equipos__TipoEqu__403A8C7D" Association="Self.FK__Equipos__TipoEqu__403A8C7D">
+            <End Role="Tipos_Equipos" EntitySet="Tipos_Equipos" />
+            <End Role="Equipos" EntitySet="Equipos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Modelos__IDMARCA__3B75D760" Association="Self.FK__Modelos__IDMARCA__3B75D760">
+            <End Role="Marcas" EntitySet="Marcas" />
+            <End Role="Modelos" EntitySet="Modelos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Renta_Dev__Emple__49C3F6B7" Association="Self.FK__Renta_Dev__Emple__49C3F6B7">
+            <End Role="Empleados" EntitySet="Empleados" />
+            <End Role="Renta_Dev" EntitySet="Renta_Dev" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Renta_Dev__Equip__4AB81AF0" Association="Self.FK__Renta_Dev__Equip__4AB81AF0">
+            <End Role="Equipos" EntitySet="Equipos" />
+            <End Role="Renta_Dev" EntitySet="Renta_Dev" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Renta_Dev__Usuar__4BAC3F29" Association="Self.FK__Renta_Dev__Usuar__4BAC3F29">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Renta_Dev" EntitySet="Renta_Dev" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AudiovisualesDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Empleados">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cedula" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="Tanda_Labor" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha_Ingreso" Type="DateTime" Precision="0" />
+          <Property Name="Estado" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Renta_Dev" Relationship="Self.FK__Renta_Dev__Emple__49C3F6B7" FromRole="Empleados" ToRole="Renta_Dev" />
+        </EntityType>
+        <EntityType Name="Equipos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NSerial" Type="String" MaxLength="11" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ServiceTag" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="TipoEquipoID" Type="Int32" />
+          <Property Name="MarcaID" Type="Int32" />
+          <Property Name="ModeloID" Type="Int32" />
+          <Property Name="TCID" Type="Int32" />
+          <Property Name="Estado" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Marcas" Relationship="Self.FK__Equipos__MarcaID__412EB0B6" FromRole="Equipos" ToRole="Marcas" />
+          <NavigationProperty Name="Modelos" Relationship="Self.FK__Equipos__ModeloI__4222D4EF" FromRole="Equipos" ToRole="Modelos" />
+          <NavigationProperty Name="Tecnologia_Conexion" Relationship="Self.FK__Equipos__TCID__4316F928" FromRole="Equipos" ToRole="Tecnologia_Conexion" />
+          <NavigationProperty Name="Tipos_Equipos" Relationship="Self.FK__Equipos__TipoEqu__403A8C7D" FromRole="Equipos" ToRole="Tipos_Equipos" />
+          <NavigationProperty Name="Renta_Dev" Relationship="Self.FK__Renta_Dev__Equip__4AB81AF0" FromRole="Equipos" ToRole="Renta_Dev" />
+        </EntityType>
+        <EntityType Name="Marcas">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Equipos" Relationship="Self.FK__Equipos__MarcaID__412EB0B6" FromRole="Marcas" ToRole="Equipos" />
+          <NavigationProperty Name="Modelos" Relationship="Self.FK__Modelos__IDMARCA__3B75D760" FromRole="Marcas" ToRole="Modelos" />
+        </EntityType>
+        <EntityType Name="Modelos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDMARCA" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Equipos" Relationship="Self.FK__Equipos__ModeloI__4222D4EF" FromRole="Modelos" ToRole="Equipos" />
+          <NavigationProperty Name="Marcas" Relationship="Self.FK__Modelos__IDMARCA__3B75D760" FromRole="Modelos" ToRole="Marcas" />
+        </EntityType>
+        <EntityType Name="Renta_Dev">
+          <Key>
+            <PropertyRef Name="NoPrestamo" />
+          </Key>
+          <Property Name="NoPrestamo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Empleado" Type="Int32" Nullable="false" />
+          <Property Name="Equipo" Type="Int32" Nullable="false" />
+          <Property Name="Usuario" Type="Int32" Nullable="false" />
+          <Property Name="FechaPrestamo" Type="DateTime" Precision="0" />
+          <Property Name="FechaDevolucion" Type="DateTime" Precision="0" />
+          <Property Name="Comentario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Empleados" Relationship="Self.FK__Renta_Dev__Emple__49C3F6B7" FromRole="Renta_Dev" ToRole="Empleados" />
+          <NavigationProperty Name="Equipos" Relationship="Self.FK__Renta_Dev__Equip__4AB81AF0" FromRole="Renta_Dev" ToRole="Equipos" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Renta_Dev__Usuar__4BAC3F29" FromRole="Renta_Dev" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Tecnologia_Conexion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Equipos" Relationship="Self.FK__Equipos__TCID__4316F928" FromRole="Tecnologia_Conexion" ToRole="Equipos" />
+        </EntityType>
+        <EntityType Name="Tipos_Equipos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Equipos" Relationship="Self.FK__Equipos__TipoEqu__403A8C7D" FromRole="Tipos_Equipos" ToRole="Equipos" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cedula" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="NumCarnet" Type="Int32" />
+          <Property Name="TipoUsuario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TipoPersona" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Renta_Dev" Relationship="Self.FK__Renta_Dev__Usuar__4BAC3F29" FromRole="Usuarios" ToRole="Renta_Dev" />
+        </EntityType>
+        <Association Name="FK__Renta_Dev__Emple__49C3F6B7">
+          <End Role="Empleados" Type="Self.Empleados" Multiplicity="1" />
+          <End Role="Renta_Dev" Type="Self.Renta_Dev" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleados">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Renta_Dev">
+              <PropertyRef Name="Empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Equipos__MarcaID__412EB0B6">
+          <End Role="Marcas" Type="Self.Marcas" Multiplicity="0..1" />
+          <End Role="Equipos" Type="Self.Equipos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marcas">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Equipos">
+              <PropertyRef Name="MarcaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Equipos__ModeloI__4222D4EF">
+          <End Role="Modelos" Type="Self.Modelos" Multiplicity="0..1" />
+          <End Role="Equipos" Type="Self.Equipos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modelos">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Equipos">
+              <PropertyRef Name="ModeloID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Equipos__TCID__4316F928">
+          <End Role="Tecnologia_Conexion" Type="Self.Tecnologia_Conexion" Multiplicity="0..1" />
+          <End Role="Equipos" Type="Self.Equipos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tecnologia_Conexion">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Equipos">
+              <PropertyRef Name="TCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Equipos__TipoEqu__403A8C7D">
+          <End Role="Tipos_Equipos" Type="Self.Tipos_Equipos" Multiplicity="0..1" />
+          <End Role="Equipos" Type="Self.Equipos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipos_Equipos">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Equipos">
+              <PropertyRef Name="TipoEquipoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Renta_Dev__Equip__4AB81AF0">
+          <End Role="Equipos" Type="Self.Equipos" Multiplicity="1" />
+          <End Role="Renta_Dev" Type="Self.Renta_Dev" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipos">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Renta_Dev">
+              <PropertyRef Name="Equipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Modelos__IDMARCA__3B75D760">
+          <End Role="Marcas" Type="Self.Marcas" Multiplicity="1" />
+          <End Role="Modelos" Type="Self.Modelos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marcas">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Modelos">
+              <PropertyRef Name="IDMARCA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Renta_Dev__Usuar__4BAC3F29">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Renta_Dev" Type="Self.Renta_Dev" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Renta_Dev">
+              <PropertyRef Name="Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AudiovisualesDBEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Empleados" EntityType="Self.Empleados" />
+          <EntitySet Name="Equipos" EntityType="Self.Equipos" />
+          <EntitySet Name="Marcas" EntityType="Self.Marcas" />
+          <EntitySet Name="Modelos" EntityType="Self.Modelos" />
+          <EntitySet Name="Renta_Dev" EntityType="Self.Renta_Dev" />
+          <EntitySet Name="Tecnologia_Conexion" EntityType="Self.Tecnologia_Conexion" />
+          <EntitySet Name="Tipos_Equipos" EntityType="Self.Tipos_Equipos" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <AssociationSet Name="FK__Renta_Dev__Emple__49C3F6B7" Association="Self.FK__Renta_Dev__Emple__49C3F6B7">
+            <End Role="Empleados" EntitySet="Empleados" />
+            <End Role="Renta_Dev" EntitySet="Renta_Dev" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Equipos__MarcaID__412EB0B6" Association="Self.FK__Equipos__MarcaID__412EB0B6">
+            <End Role="Marcas" EntitySet="Marcas" />
+            <End Role="Equipos" EntitySet="Equipos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Equipos__ModeloI__4222D4EF" Association="Self.FK__Equipos__ModeloI__4222D4EF">
+            <End Role="Modelos" EntitySet="Modelos" />
+            <End Role="Equipos" EntitySet="Equipos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Equipos__TCID__4316F928" Association="Self.FK__Equipos__TCID__4316F928">
+            <End Role="Tecnologia_Conexion" EntitySet="Tecnologia_Conexion" />
+            <End Role="Equipos" EntitySet="Equipos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Equipos__TipoEqu__403A8C7D" Association="Self.FK__Equipos__TipoEqu__403A8C7D">
+            <End Role="Tipos_Equipos" EntitySet="Tipos_Equipos" />
+            <End Role="Equipos" EntitySet="Equipos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Renta_Dev__Equip__4AB81AF0" Association="Self.FK__Renta_Dev__Equip__4AB81AF0">
+            <End Role="Equipos" EntitySet="Equipos" />
+            <End Role="Renta_Dev" EntitySet="Renta_Dev" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Modelos__IDMARCA__3B75D760" Association="Self.FK__Modelos__IDMARCA__3B75D760">
+            <End Role="Marcas" EntitySet="Marcas" />
+            <End Role="Modelos" EntitySet="Modelos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Renta_Dev__Usuar__4BAC3F29" Association="Self.FK__Renta_Dev__Usuar__4BAC3F29">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Renta_Dev" EntitySet="Renta_Dev" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AudiovisualesDBModelStoreContainer" CdmEntityContainer="AudiovisualesDBEntities1">
+          <EntitySetMapping Name="Empleados">
+            <EntityTypeMapping TypeName="AudiovisualesDBModel.Empleados">
+              <MappingFragment StoreEntitySet="Empleados">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+                <ScalarProperty Name="Tanda_Labor" ColumnName="Tanda_Labor" />
+                <ScalarProperty Name="Fecha_Ingreso" ColumnName="Fecha_Ingreso" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipos">
+            <EntityTypeMapping TypeName="AudiovisualesDBModel.Equipos">
+              <MappingFragment StoreEntitySet="Equipos">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="NSerial" ColumnName="NSerial" />
+                <ScalarProperty Name="ServiceTag" ColumnName="ServiceTag" />
+                <ScalarProperty Name="TipoEquipoID" ColumnName="TipoEquipoID" />
+                <ScalarProperty Name="MarcaID" ColumnName="MarcaID" />
+                <ScalarProperty Name="ModeloID" ColumnName="ModeloID" />
+                <ScalarProperty Name="TCID" ColumnName="TCID" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Marcas">
+            <EntityTypeMapping TypeName="AudiovisualesDBModel.Marcas">
+              <MappingFragment StoreEntitySet="Marcas">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Modelos">
+            <EntityTypeMapping TypeName="AudiovisualesDBModel.Modelos">
+              <MappingFragment StoreEntitySet="Modelos">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDMARCA" ColumnName="IDMARCA" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Renta_Dev">
+            <EntityTypeMapping TypeName="AudiovisualesDBModel.Renta_Dev">
+              <MappingFragment StoreEntitySet="Renta_Dev">
+                <ScalarProperty Name="NoPrestamo" ColumnName="NoPrestamo" />
+                <ScalarProperty Name="Empleado" ColumnName="Empleado" />
+                <ScalarProperty Name="Equipo" ColumnName="Equipo" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="FechaPrestamo" ColumnName="FechaPrestamo" />
+                <ScalarProperty Name="FechaDevolucion" ColumnName="FechaDevolucion" />
+                <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tecnologia_Conexion">
+            <EntityTypeMapping TypeName="AudiovisualesDBModel.Tecnologia_Conexion">
+              <MappingFragment StoreEntitySet="Tecnologia_Conexion">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tipos_Equipos">
+            <EntityTypeMapping TypeName="AudiovisualesDBModel.Tipos_Equipos">
+              <MappingFragment StoreEntitySet="Tipos_Equipos">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="AudiovisualesDBModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+                <ScalarProperty Name="NumCarnet" ColumnName="NumCarnet" />
+                <ScalarProperty Name="TipoUsuario" ColumnName="TipoUsuario" />
+                <ScalarProperty Name="TipoPersona" ColumnName="TipoPersona" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

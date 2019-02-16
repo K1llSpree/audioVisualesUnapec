@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{304C07A4-3992-44E5-BDE0-498E7F1DA868}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>audioVisuales</RootNamespace>
+    <AssemblyName>audioVisuales</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="audioVisualesDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>audioVisualesDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="audioVisualesDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>audioVisualesDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="audioVisualesDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>audioVisualesDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="FrmeditarTipoEquipo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmeditarTipoEquipo.Designer.cs">
+      <DependentUpon>FrmeditarTipoEquipo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Empleados.cs">
+      <DependentUpon>audioVisualesDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Equipos.cs">
+      <DependentUpon>audioVisualesDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCrModelo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCrModelo.Designer.cs">
+      <DependentUpon>FrmCrModelo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCrTecConcs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCrTecConcs.Designer.cs">
+      <DependentUpon>FrmCrTecConcs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmeditarEmpleado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmeditarEmpleado.Designer.cs">
+      <DependentUpon>FrmeditarEmpleado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmeditarEquipos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmeditarEquipos.Designer.cs">
+      <DependentUpon>FrmeditarEquipos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmEditarMarca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmEditarMarca.Designer.cs">
+      <DependentUpon>FrmEditarMarca.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmeditarUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmeditarUsuario.Designer.cs">
+      <DependentUpon>FrmeditarUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmGestionMarca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGestionMarca.Designer.cs">
+      <DependentUpon>FrmGestionMarca.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMantEmpleado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMantEmpleado.Designer.cs">
+      <DependentUpon>FrmMantEmpleado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMantEquipos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMantEquipos.Designer.cs">
+      <DependentUpon>FrmMantEquipos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMantModelo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMantModelo.Designer.cs">
+      <DependentUpon>FrmMantModelo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMantTecConexion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMantTecConexion.Designer.cs">
+      <DependentUpon>FrmMantTecConexion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMantTipoEquipos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMantTipoEquipos.Designer.cs">
+      <DependentUpon>FrmMantTipoEquipos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMantUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMantUsuario.Designer.cs">
+      <DependentUpon>FrmMantUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Marcas.cs">
+      <DependentUpon>audioVisualesDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Menú.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menú.Designer.cs">
+      <DependentUpon>Menú.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos.cs">
+      <DependentUpon>audioVisualesDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Renta_Dev.cs">
+      <DependentUpon>audioVisualesDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tecnologia_Conexion.cs">
+      <DependentUpon>audioVisualesDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tipos_Equipos.cs">
+      <DependentUpon>audioVisualesDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usuarios.cs">
+      <DependentUpon>audioVisualesDB.tt</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="FrmeditarTipoEquipo.resx">
+      <DependentUpon>FrmeditarTipoEquipo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCrModelo.resx">
+      <DependentUpon>FrmCrModelo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCrTecConcs.resx">
+      <DependentUpon>FrmCrTecConcs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmeditarEmpleado.resx">
+      <DependentUpon>FrmeditarEmpleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmeditarEquipos.resx">
+      <DependentUpon>FrmeditarEquipos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmEditarMarca.resx">
+      <DependentUpon>FrmEditarMarca.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmeditarUsuario.resx">
+      <DependentUpon>FrmeditarUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmGestionMarca.resx">
+      <DependentUpon>FrmGestionMarca.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMantEmpleado.resx">
+      <DependentUpon>FrmMantEmpleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMantEquipos.resx">
+      <DependentUpon>FrmMantEquipos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMantModelo.resx">
+      <DependentUpon>FrmMantModelo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMantTecConexion.resx">
+      <DependentUpon>FrmMantTecConexion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMantTipoEquipos.resx">
+      <DependentUpon>FrmMantTipoEquipos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMantUsuario.resx">
+      <DependentUpon>FrmMantUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menú.resx">
+      <DependentUpon>Menú.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EntityDeploy Include="audioVisualesDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>audioVisualesDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="audioVisualesDB.edmx.diagram">
+      <DependentUpon>audioVisualesDB.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="audioVisualesDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>audioVisualesDB.edmx</DependentUpon>
+      <LastGenOutput>audioVisualesDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="audioVisualesDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>audioVisualesDB.edmx</DependentUpon>
+      <LastGenOutput>audioVisualesDB.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

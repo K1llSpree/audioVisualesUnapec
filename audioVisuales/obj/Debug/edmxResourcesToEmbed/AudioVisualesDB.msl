@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AudiovisualesDBModelStoreContainer" CdmEntityContainer="AudiovisualesDBEntities1">
+    <EntitySetMapping Name="Empleados">
+      <EntityTypeMapping TypeName="AudiovisualesDBModel.Empleados">
+        <MappingFragment StoreEntitySet="Empleados">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+          <ScalarProperty Name="Tanda_Labor" ColumnName="Tanda_Labor" />
+          <ScalarProperty Name="Fecha_Ingreso" ColumnName="Fecha_Ingreso" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Equipos">
+      <EntityTypeMapping TypeName="AudiovisualesDBModel.Equipos">
+        <MappingFragment StoreEntitySet="Equipos">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="NSerial" ColumnName="NSerial" />
+          <ScalarProperty Name="ServiceTag" ColumnName="ServiceTag" />
+          <ScalarProperty Name="TipoEquipoID" ColumnName="TipoEquipoID" />
+          <ScalarProperty Name="MarcaID" ColumnName="MarcaID" />
+          <ScalarProperty Name="ModeloID" ColumnName="ModeloID" />
+          <ScalarProperty Name="TCID" ColumnName="TCID" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Marcas">
+      <EntityTypeMapping TypeName="AudiovisualesDBModel.Marcas">
+        <MappingFragment StoreEntitySet="Marcas">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Modelos">
+      <EntityTypeMapping TypeName="AudiovisualesDBModel.Modelos">
+        <MappingFragment StoreEntitySet="Modelos">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="IDMARCA" ColumnName="IDMARCA" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Renta_Dev">
+      <EntityTypeMapping TypeName="AudiovisualesDBModel.Renta_Dev">
+        <MappingFragment StoreEntitySet="Renta_Dev">
+          <ScalarProperty Name="NoPrestamo" ColumnName="NoPrestamo" />
+          <ScalarProperty Name="Empleado" ColumnName="Empleado" />
+          <ScalarProperty Name="Equipo" ColumnName="Equipo" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="FechaPrestamo" ColumnName="FechaPrestamo" />
+          <ScalarProperty Name="FechaDevolucion" ColumnName="FechaDevolucion" />
+          <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tecnologia_Conexion">
+      <EntityTypeMapping TypeName="AudiovisualesDBModel.Tecnologia_Conexion">
+        <MappingFragment StoreEntitySet="Tecnologia_Conexion">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tipos_Equipos">
+      <EntityTypeMapping TypeName="AudiovisualesDBModel.Tipos_Equipos">
+        <MappingFragment StoreEntitySet="Tipos_Equipos">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="AudiovisualesDBModel.Usuarios">
+        <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+          <ScalarProperty Name="NumCarnet" ColumnName="NumCarnet" />
+          <ScalarProperty Name="TipoUsuario" ColumnName="TipoUsuario" />
+          <ScalarProperty Name="TipoPersona" ColumnName="TipoPersona" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
